@@ -27,7 +27,7 @@ class SignInPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      userName: '',
       password: '',
       errorMesssage: null,
     };
@@ -35,10 +35,10 @@ class SignInPage extends Component {
 
   submit = async () => {
     this.setState({ errorMessage: null });
-    const { username, password } = this.state;
+    const { userName, password } = this.state;
 
     try {
-      await this.props.userStore.signin(username, password);
+      await this.props.userStore.signin(userName, password);
       this.props.routerStore.push('/tasks');
     } catch (error) {
       const errorMessage = error.response.data.message;
@@ -57,17 +57,17 @@ class SignInPage extends Component {
       <div className="fullscreen-wrapper">
         <FormContainer>
           <Heading>Hello!</Heading>
-          <p>Fill in your username and password to sign in.</p>
+          <p>Fill in your userName and password to sign in.</p>
           
           {errorMessage && <ErrorMessage message={this.state.errorMessage} />}
 
           <div>
             <FormField
               id="outlined-name"
-              label="Username"
+              label="userName"
               margin="dense"
               variant="outlined"
-              onChange={e => this.setState({ username: e.target.value })}
+              onChange={e => this.setState({ userName: e.target.value })}
             />
           </div>
           <div>

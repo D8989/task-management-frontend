@@ -2,15 +2,15 @@ import { post } from 'axios';
 import BaseHttpService from './base-http.service';
 
 export default class AuthService extends BaseHttpService {
-  async signin(username, password) {
-    const result = await post(`${this.BASE_URL}/auth/signin`, { username, password });
+  async signin(userName, password) {
+    const result = await post(`${this.BASE_URL}/auth/signin`, { userName, password });
     const accessToken = result.data.accessToken;
     this.saveToken(accessToken);
-    return result.data.username;
+    return result.data.userName;
   }
 
-  async signup(username, password) {
-    await post(`${this.BASE_URL}/auth/signup`, { username, password });
+  async signup(userName, password) {
+    await post(`${this.BASE_URL}/auth/signup`, { userName, password });
   }
 
   async signout() {
